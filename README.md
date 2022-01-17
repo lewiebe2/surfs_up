@@ -18,11 +18,16 @@ The three major points from the analysis are:
 ## Summary 
 Since the mean and median temperatures for both June and December are only about 4 degrees different and within the 70 degree range, a surf and ice cream shop business seems sustainable year-round. The 2 degree difference in maximum temperatures, both in the 80 degree range, also supports this assertion.
 
-However, the difference in minimum temperatures should be investigated further, since December's minimum of 56 degrees seems to low for the business model. It would be useful to query for December temperatures with the time of day to determine when the low temperatures occur and if they could harm the business model:
+However, the minimum temperatures for both months should be investigated further, since frequent low temperatures may make the business model unsustainable.
 
+It would be useful to query the December temperatures for measurements less than 60 degrees, to determine the frequency of low temperatures in that month:
 
+    low_dec_temps = session.query(Measurement.date,Measurement.tobs).filter(extract('month',Measurement.date) == 12).filter(Measurement.tobs < 60).all()   
 
-A query for the relative humidity in both months would also be helpful, since the heat index may be a better measure than temperature alone:
+The query only returns four results, so low temperatures in December do not seem to be frequent enough to challenge the sustainability of the business model:
+
+![](Resources/low_dec_temps.PNG)
+
 
 
 
